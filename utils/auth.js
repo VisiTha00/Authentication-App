@@ -12,3 +12,15 @@ export async function createUser(email, password) {
     }
   );
 }
+
+export async function login(email, password) {
+  const response = await axios.post(
+    `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
+    {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    }
+  );
+  console.log(response.data);
+}
