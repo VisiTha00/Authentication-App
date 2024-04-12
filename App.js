@@ -9,6 +9,8 @@ import { Colors } from "./constants/styles";
 import AuthProvider, { useAuthentication } from "./Contexts/authContext";
 import Button from "./components/ui/IconButton";
 import IconButton from "./components/ui/IconButton";
+import { useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
@@ -66,12 +68,26 @@ function Navigation() {
   );
 }
 
+function Root() {
+  const { setToken } = useAuthentication();
+  useEffect(() => {
+    async function getTokenFromStorage() {
+      const token = await AsyncStorage.getItem("token");
+      if (token) {
+        setToken(token);
+      }
+    }
+    getTokenFromStorage();
+  }, []);
+  return <Navigation />;
+}
+
 export default function App() {
   return (
     <>
       <StatusBar style="light" />
       <AuthProvider>
-        <Navigation />
+        <Root />
       </AuthProvider>
     </>
   );

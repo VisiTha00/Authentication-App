@@ -19,7 +19,7 @@ function WelcomeScreen() {
       }
     }
     getMessage();
-  }, []);
+  }, [token]);
   return (
     <View style={styles.rootContainer}>
       <Text style={styles.title}>Welcome!</Text>
