@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { HiArrowRightOnRectangle } from "react-icons/hi2";
 
 function IconButton({ icon, color, size, onPress }) {
   return (

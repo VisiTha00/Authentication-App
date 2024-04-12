@@ -9,14 +9,14 @@ function AuthProvider({ children }) {
     setToken(token);
   }
 
-  function logout() {
+  function logOut() {
     setToken(null);
   }
 
   const value = {
     token,
     authenticate,
-    logout,
+    logOut,
     isAuthenticated: token !== null,
   };
 
