@@ -3,14 +3,17 @@ import AuthContent from "../components/Auth/AuthContent";
 import { login } from "../utils/auth";
 import { Alert } from "react-native";
 import Spinner from "../components/ui/Spinner";
+import { useAuthentication } from "../Contexts/authContext";
 
 function LoginScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const { authenticate } = useAuthentication();
 
   async function handleLogin({ email, password }) {
     setIsAuthenticating(true);
     try {
-      await login(email, password);
+      const token = await login(email, password);
+      authenticate(token);
     } catch (error) {
       Alert.alert("Login Failed", "Check your email and password", [
         { text: "OK" },
